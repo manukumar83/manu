@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CGPA and SGPA Calculator</title>
+</head>
+<body>
+    <style>
+    body {
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-image: url("bg.jpg");
+        background-size: cover;
+        background-position: center;     
+    }   
+   </style>
+
+<h2>CGPA and SGPA Calculator</h2>
+
+<form id="gradeForm" action="">
+  <label for="grade1">Grade for Subject 1:</label>
+  <input type="text" id="grade1" name="grade1" required>
+  <br>
+  <label for="grade2">Grade for Subject 2:</label>
+  <input type="text" id="grade2" name="grade2" required>
+  <br>
+  <label for="grade3">Grade for Subject 3:</label>
+  <input type="text" id="grade3" name="grade3" required>
+  <br>
+  <label for="grade4">Grade for Subject 4:</label>
+  <input type="text" id="grade4" name="grade4" required>
+  <br>
+  <label for="grade5">Grade for Subject 5:</label>
+  <input type="text" id="grade5" name="grade5" required>
+  <br>
+  <label for="grade6">Grade for Subject 6:</label>
+  <input type="text" id="grade6" name="grade6" required>
+  <br>
+  <label for="grade7">Grade for Subject 7:</label>
+  <input type="text" id="grade7" name="grade7" required>
+  <br>
+  <label for="grade8">Grade for Subject 8:</label>
+  <input type="text" id="grade8" name="grade8" required>
+  <br>
+  <button type="button" onclick="calculateCGPA()">Calculate CGPA</button>
+  <button type="button" onclick="calculateSGPA()">Calculate SGPA</button>
+</form>
+
+<p id="cgpaResult"></p>
+<p id="sgpaResult"></p>
+
+<script>
+function calculateCGPA() {
+  var grades = [];
+  grades.push(document.getElementById("grade1").value);
+  grades.push(document.getElementById("grade2").value);
+  grades.push(document.getElementById("grade3").value);
+  grades.push(document.getElementById("grade4").value);
+  grades.push(document.getElementById("grade5").value);
+  grades.push(document.getElementById("grade6").value);
+  grades.push(document.getElementById("grade7").value);
+  grades.push(document.getElementById("grade8").value);
+
+  var credits = [4, 4, 4, 4, 2, 2, 1, 1];
+  var totalCredits = 0;
+  var totalGradePoints = 0;
+
+  for (var i = 0; i < grades.length; i++) {
+    if (grades[i] === "A") {
+      totalGradePoints += 4 * credits[i];
+    } else if (grades[i] === "B") {
+      totalGradePoints += 3 * credits[i];
+    } else if (grades[i] === "C") {
+      totalGradePoints += 2 * credits[i];
+    } else if (grades[i] === "D") {
+      totalGradePoints += 1 * credits[i];
+    } // Assuming F grade contributes 0 points
+    totalCredits += credits[i];
+  }
+
+  var cgpa = totalGradePoints / totalCredits;
+  document.getElementById("cgpaResult").innerHTML = "CGPA: " + cgpa.toFixed(2);
+}
+
+function calculateSGPA() {
+  var grades = [];
+  grades.push(document.getElementById("grade5").value);
+  grades.push(document.getElementById("grade6").value);
+  grades.push(document.getElementById("grade7").value);
+  grades.push(document.getElementById("grade8").value);
+
+  var credits = [2, 2, 1, 1];
+  var totalCredits = 0;
+  var totalGradePoints = 0;
+
+  for (var i = 0; i < grades.length; i++) {
+    if (grades[i] === "A") {
+      totalGradePoints += 4 * credits[i];
+    } else if (grades[i] === "B") {
+      totalGradePoints += 3 * credits[i];
+    } else if (grades[i] === "C") {
+      totalGradePoints += 2 * credits[i];
+    } else if (grades[i] === "D") {
+      totalGradePoints += 1 * credits[i];
+    } // Assuming F grade contributes 0 points
+    totalCredits += credits[i];
+  }
+
+  var sgpa = totalGradePoints / totalCredits;
+  document.getElementById("sgpaResult").innerHTML = "SGPA: " + sgpa.toFixed(2);
+}
+</script>
+
+</body>
+</html>
